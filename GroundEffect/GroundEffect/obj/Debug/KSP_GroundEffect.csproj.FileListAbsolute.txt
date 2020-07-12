@@ -1,0 +1,6 @@
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/bin/Debug/GroundEffect.dll
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/bin/Debug/GroundEffect.pdb
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/obj/Debug/KSP_GroundEffect.csproj.CoreCompileInputs.cache
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/obj/Debug/GroundEffect.dll
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/obj/Debug/GroundEffect.pdb
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/obj/Debug/KSP_GroundEffect.csprojAssemblyReference.cache

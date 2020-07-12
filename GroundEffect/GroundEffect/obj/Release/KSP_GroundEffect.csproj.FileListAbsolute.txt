@@ -1,0 +1,4 @@
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/bin/Release/GroundEffect.dll
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/obj/Release/KSP_GroundEffect.csproj.CoreCompileInputs.cache
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/obj/Release/GroundEffect.dll
+/home/sobelj/builds/GroundEffect_New/GroundEffect/GroundEffect/obj/Release/KSP_GroundEffect.csprojAssemblyReference.cache

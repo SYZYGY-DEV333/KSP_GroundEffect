@@ -1,0 +1,20 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KSP_GroundEffect", "GroundEffect\KSP_GroundEffect.csproj", "{8FA1029B-738C-4186-98DD-B6301AE59E90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8FA1029B-738C-4186-98DD-B6301AE59E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FA1029B-738C-4186-98DD-B6301AE59E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FA1029B-738C-4186-98DD-B6301AE59E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FA1029B-738C-4186-98DD-B6301AE59E90}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		version = v1.1.1
+	EndGlobalSection
+EndGlobal

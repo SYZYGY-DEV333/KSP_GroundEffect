@@ -1,0 +1,6 @@
+﻿{
+    ModuleActivateAltitude: 80,
+    ModuleRaycastAltitude: 30,
+    VesselActivateAltitude: 80,
+    VesselDefaultLiftMultiplier: 8
+}

@@ -1,19 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-
+using System.IO;
+using SimpleJSON;
 using UnityEngine;
 
 namespace KSP_GroundEffect
 {
     public class VesselGroundEffect : VesselModule
     {
+        public static string GetSettings(string val)
+        {
+            JSONNode configObject = JSON.Parse(File.ReadAllText(@"GameData/GroundEffect/settings.json"));
+            return configObject[val].Value;
+        }
 
         // Minimum Radar Altitude to start testing
-        public const float ActivateAltitude = 80;
+        public float ActivateAltitude = Convert.ToSingle(GetSettings("VesselActivateAltitude"));
+        //public float ActivateAltitude = 80;
 
         // How much lift is multiplied at maximum proximity
-        public const float DefaultLiftMultiplier = 8;
+        public float DefaultLiftMultiplier = Convert.ToSingle(GetSettings("VesselDefaultLiftMultiplier"));
+        //public float DefaultLiftMultiplier = 8;
+
+        // Proper Float Comparison
+        public static bool NearlyEqual(float f1, float f2)
+        {
+            // Equal if they are within 0.0001 of each other
+            return Math.Abs(f1 - f2) < 0.0001;
+        }
 
         // Situation at which ground effect can occur
         const Vessel.Situations LowFlying = (
@@ -82,7 +97,7 @@ namespace KSP_GroundEffect
 
             print("Vessel unloaded");
 
-           
+
 
             GameEvents.onVesselStandardModification.Remove(VesselStandardModification);
 
@@ -117,7 +132,7 @@ namespace KSP_GroundEffect
             }
 
             // Checks to see if ground effect would have any significance
-            if (   ((vessel.situation & LowFlying) == 0)
+            if (((vessel.situation & LowFlying) == 0)
                 || (vessel.radarAltitude > ActivateAltitude)
                 || !vessel.mainBody.hasSolidSurface
                 || !vessel.mainBody.atmosphere)
@@ -176,7 +191,7 @@ namespace KSP_GroundEffect
             {
                 groundPlane.distance = 0;
             }
-           
+
             float newWingSpan = 1;
 
             bool prevInGroundEffect = inGroundEffect;
@@ -235,7 +250,7 @@ namespace KSP_GroundEffect
             // Problem: there isn't a good way to get 'Forward'
             // Which wings are left and right?
             // What if it's a spinning rotor?
-           
+
             // This part checks how perpendicular the wing's position is with
             // its velocity, using dot product.
 
@@ -281,7 +296,7 @@ namespace KSP_GroundEffect
             }
 
             // groundPlane.distance is zero if ground is too far away
-            if (groundPlane.distance != 0.0f)
+            if (NearlyEqual(groundPlane.distance, 0.0f) == false)
             {
                 // Set ground distance to approximated terrain proximity
                 // If the ocean is closer, then the ocean distance will be used
@@ -300,7 +315,7 @@ namespace KSP_GroundEffect
             // Convert ground distance to wing spans between 0.0 .. 1.0
             groundDistance = Math.Min(1.0f, groundDistance / wingSpan);
 
-            if (groundDistance == 1.0f)
+            if (NearlyEqual(groundDistance, 1.0f))
             {
                 // not close enough to the ground, return lift unchanged
                 return originalLift;
@@ -379,7 +394,7 @@ namespace KSP_GroundEffect
 
             foreach (Part part in vessel.Parts)
             {
-           
+
                 ModuleControlSurface thingThatLiftsPartsAndMoves = null;
                 ModuleLiftingSurface thingThatLiftsParts = null;
 
@@ -414,7 +429,7 @@ namespace KSP_GroundEffect
                         liftingSurfaces.Add(thingThatLiftsParts);
                     }
                 }
-               
+
                 //thingThatLiftsPartsAndMoves.OnCenterOfLiftQuery();
 
             }

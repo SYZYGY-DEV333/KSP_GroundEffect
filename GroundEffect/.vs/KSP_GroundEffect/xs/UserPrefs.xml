@@ -1,0 +1,29 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="GroundEffect/VesselGroundEffect.cs">
+    <Files>
+      <File FileName="GroundEffect/ModuleGroundEffect.cs" Line="3" Column="17" />
+      <File FileName="GroundEffect/VesselGroundEffect.cs" Line="5" Column="18" />
+      <File FileName="GroundEffect/RedSwell.cs" Line="4" Column="1" />
+      <File FileName="GroundEffect/settings.json" Line="7" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="KSP_GroundEffect" expanded="True">
+            <Node name="KSP_GroundEffect" expanded="True">
+              <Node name="References" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="VesselGroundEffect.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
