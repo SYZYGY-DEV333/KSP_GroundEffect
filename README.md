@@ -28,6 +28,7 @@ If you don't want a part to have Ground Effect calculations performed on it, use
     - UnityEngine.CoreModule.dll
     - UnityEngine.dll
     - UnityEngine.PhysicsModule.dll
+   
    Reference also SimpleJSON.cs which is packaged with this.
    If This still doesn't work, try the below, though be warned that the resulting compiled plugin has somewhat more limited functionality.
 
@@ -40,6 +41,7 @@ If you don't want a part to have Ground Effect calculations performed on it, use
     - UnityEngine.CoreModule.dll
     - UnityEngine.dll
     - UnityEngine.PhysicsModule.dll
+   
    Also, move SimpleJSON.cs into your working directory.
 2. Run the following command:
     `csc /t:library /out:KSP_GroundEffect.dll VesselGroundEffect.cs /r:Assembly-CSharp.dll /r:System.Core.dll /r:System.dll /r:UnityEngine.CoreModule.dll /r:UnityEngine.dll /r:UnityEngine.PhysicsModule.dll /r:System.Configuration.dll /r:SimpleJSON.cs`
