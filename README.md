@@ -5,7 +5,20 @@ The SimpleJSON library was written by Markus Göbel (Bunny83), and is licensed u
 
 See [Releases](https://github.com/SYZYGY-DEV333/KSP_GroundEffect/releases) or the [Forum Post](https://forum.kerbalspaceprogram.com/index.php?/topic/178169-wip-ground-effect/).
 
-Unofficial build instructions that worked for me:
+## ModuleManager part exemption
+If you don't want a part to have Ground Effect calculations performed on it, use a modulemanager patch like this:
+
+```
+@PART[something]
+{
+	%MODULE
+	{
+		name = IgnoreGroundEffect
+	}
+}
+```
+
+## Unofficial build instructions that worked for me:
 1. Open in VS or MonoDevelop and try to build.
 2. If that works, great. If not, check the refrences. Make sure to reference the following from KSP_Data:
     - Assembly-CSharp.dll
@@ -18,7 +31,7 @@ Unofficial build instructions that worked for me:
    Reference also SimpleJSON.cs which is packaged with this.
    If This still doesn't work, try the below, though be warned that the resulting compiled plugin has somewhat more limited functionality.
 
-Build instructions for if all else fails:
+## Build instructions for if all else fails:
 1. Move all of the following files from KSP_Data to the same directory as the files in this repository:
     - Assembly-CSharp.dll
     - System.Core.dll

@@ -21,7 +21,8 @@ namespace KSP_GroundEffect
 
         // How much lift is multiplied at maximum proximity
         public float DefaultLiftMultiplier = Convert.ToSingle(GetSettings("VesselDefaultLiftMultiplier"));
-        //public float DefaultLiftMultiplier = 8;
+        //public float DefaultLiftMultiplier = 6;
+        //public bool ModEnabled = Convert.ToBoolean(GetSettings("DefaultOn"));
 
         // Proper Float Comparison
         public static bool NearlyEqual(float f1, float f2)
@@ -347,13 +348,30 @@ namespace KSP_GroundEffect
 
             Vector3 velocity = part.Rigidbody.velocity;
             Vector3 horzVelocity = (velocity - normal * Vector3.Dot(velocity, normal)).normalized;
-            Vector3 inducedDrag = horzVelocity * Vector3.Dot(originalLift, horzVelocity);
+            Vector3 protoInducedDrag = horzVelocity * Vector3.Dot(originalLift, horzVelocity);
+            Vector3 inducedDrag;
+
+            float dotInducedDrag = Vector3.Dot(velocity, protoInducedDrag);
+            if (dotInducedDrag < 0) // If drag is pulling us the same way as our velocity, something is wrong!
+            {
+                inducedDrag = Vector3.zero; // dirty, but works I think
+            }
+            else
+            {
+                inducedDrag = protoInducedDrag;
+            }
 
             float groundness = horizontalness * (1.0f - groundDistance);
             groundness *= groundness;
 
             // force = -inducedDrag * groundness + (originalLift - inducedDrag) * DefaultLiftMultiplier * groundness;
             // force = ((originalLift - inducedDrag) * DefaultLiftMultiplier - inducedDrag) * groundness;
+
+            // The problem with this is that it can lead to negative drag for some reason in certain contexts (often
+            // involving Tweakscale). Simple dirty fix: ignore the inducedDrag vector if it's gonna cause negative drag.
+            // Simple in theory, but there's no good built in way to compare Vector3 objects how I want, so gotta make one.
+            //    (See dotInducedDrag and the comparison stuff above.)
+
             Vector3 force = -inducedDrag * groundness + (originalLift - inducedDrag) * DefaultLiftMultiplier * groundness;
             part.Rigidbody.AddForce(force, ForceMode.Force);
 
@@ -397,21 +415,24 @@ namespace KSP_GroundEffect
 
                 ModuleControlSurface thingThatLiftsPartsAndMoves = null;
                 ModuleLiftingSurface thingThatLiftsParts = null;
-
-                // Look through the list of part modules to find anything that inherits ModuleLiftingSurface
-                foreach (PartModule module in part.Modules)
+                // Make sure we're actually allowed to modify that part
+                if (!part.Modules.Contains("IgnoreGroundEffect"))
                 {
-
-                    if (typeof(ModuleLiftingSurface).IsAssignableFrom(module.GetType()))
+                    // Look through the list of part modules to find anything that inherits ModuleLiftingSurface
+                    foreach (PartModule module in part.Modules)
                     {
-                        //thingThatLiftsParts = (ModuleLiftingSurface)(module);
-                        //initialLift = thingThatLiftsParts.deflectionLiftCoeff;
 
-                        thingThatLiftsParts = (ModuleLiftingSurface)(module);
-
-                        if (module is ModuleControlSurface)
+                        if (typeof(ModuleLiftingSurface).IsAssignableFrom(module.GetType()))
                         {
-                            thingThatLiftsPartsAndMoves = (ModuleControlSurface)(module);
+                            //thingThatLiftsParts = (ModuleLiftingSurface)(module);
+                            //initialLift = thingThatLiftsParts.deflectionLiftCoeff;
+
+                            thingThatLiftsParts = (ModuleLiftingSurface)(module);
+
+                            if (module is ModuleControlSurface)
+                            {
+                                thingThatLiftsPartsAndMoves = (ModuleControlSurface)(module);
+                            }
                         }
                     }
                 }

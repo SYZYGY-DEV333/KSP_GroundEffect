@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace KSP_GroundEffect
 {
-
     // I don't know c#
     
     [KSPAddon(KSPAddon.Startup.Flight, false)]
@@ -23,6 +22,7 @@ namespace KSP_GroundEffect
         //public float ActivateAltitude = 80;
         public float RaycastAltitude = Convert.ToSingle(GetSettings("ModuleRaycastAltitude"));
         //public float RaycastAltitude = 30;
+        //public bool ModEnabled = Convert.ToBoolean(GetSettings("DefaultOn"));
 
         private float initialLift;
         private float initialLiftCtrl;

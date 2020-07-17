@@ -60,9 +60,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ModuleGroundEffect.cs" />
-    <Compile Include="VesselGroundEffect.cs" />
     <Compile Include="RedSwell.cs" />
     <Compile Include="SimpleJSON.cs" />
+    <Compile Include="Vector3Compare.cs" />
+    <Compile Include="VesselGroundEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="settings.json" />
